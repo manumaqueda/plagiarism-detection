@@ -1,1 +1,5 @@
 notebook_ims/
+data/
+data.zip 
+__MACOSX
+.ipynb_checkpoints
