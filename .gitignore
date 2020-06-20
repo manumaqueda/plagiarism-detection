@@ -3,3 +3,5 @@ data/
 data.zip 
 __MACOSX
 .ipynb_checkpoints
+__pycache__/
+plagiarism_data/
