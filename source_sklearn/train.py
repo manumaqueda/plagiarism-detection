@@ -7,8 +7,14 @@ import pandas as pd
 from sklearn.externals import joblib
 
 ## TODO: Import any additional libraries you need to define a model
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.ensemble import RandomForestClassifier
 
-
+##
+CLASSIFIERS_TYPE = {
+    'NN': KNeighborsClassifier(3),
+    'RF': RandomForestClassifier(max_depth=5, n_estimators=10, max_features=1)
+}
 # Provided model load function
 def model_fn(model_dir):
     """Load model from the model_dir. This is the same model that is saved
@@ -38,7 +44,10 @@ if __name__ == '__main__':
     parser.add_argument('--model-dir', type=str, default=os.environ['SM_MODEL_DIR'])
     parser.add_argument('--data-dir', type=str, default=os.environ['SM_CHANNEL_TRAIN'])
     
-    ## TODO: Add any additional arguments that you will need to pass into your model
+    # Training Parameters, given
+    # we add a parameter to drive classifier implementation
+    parser.add_argument('--classifier-type', type=str, default='NN', metavar='CT',
+                        help='classifier type to train in this estimator')
     
     # args holds all passed-in arguments
     args = parser.parse_args()
@@ -53,14 +62,10 @@ if __name__ == '__main__':
     
     
     ## --- Your code here --- ##
+    print('training model')
+    model = CLASSIFIERS_TYPE[args.classifier_type]
     
-
-    ## TODO: Define a model 
-    model = None
-    
-    
-    ## TODO: Train the model
-    
+    model.fit(train_x, train_y)
     
     
     ## --- End of your code  --- ##
