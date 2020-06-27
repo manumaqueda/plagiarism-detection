@@ -12,8 +12,8 @@ from sklearn.ensemble import RandomForestClassifier
 
 ##
 CLASSIFIERS_TYPE = {
-    'NN': KNeighborsClassifier(3),
-    'RF': RandomForestClassifier(max_depth=5, n_estimators=10, max_features=1)
+    'NN': KNeighborsClassifier(3), # for k=3, accurracy = 0.8
+    'RF': RandomForestClassifier(max_depth=5, n_estimators=10, max_features=1) # accurracy 0.88
 }
 # Provided model load function
 def model_fn(model_dir):
